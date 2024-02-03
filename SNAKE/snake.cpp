@@ -16,7 +16,7 @@
 #define WINDOW_HEIGHT 500
 #endif
 
-#define GRID_SIZE 20
+#define GRID_SIZE 10
 #define GRID_DIM 400
 
 enum{
@@ -155,6 +155,23 @@ void render_grid(SDL_Renderer * renderer, int x, int y)
         }
     }
     return;
+}
+
+void reset_snake()
+{
+    SNAKE * track = head;
+    SNAKE * temp;
+
+    while(track != NULL)
+    {
+        temp = track;
+        track = track -> next;
+        free(temp);
+    }
+
+    INIT_SNAKE();
+    increase_snake();
+
 }
 
 
