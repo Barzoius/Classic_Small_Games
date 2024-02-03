@@ -174,6 +174,28 @@ void reset_snake()
 
 }
 
+void detect_crash()
+{
+    if(head -> x < 0 || head -> x >= GRID_SIZE || head -> y < 0 || head -> y >= GRID_SIZE)
+    {
+        reset_snake();
+    }
+
+    SNAKE * track = head;
+
+    if(track -> next != nullptr)
+        track = track -> next;
+
+    while(track != nullptr)
+    {
+        if(track -> x == head -> x && track -> y == head-> y)
+            reset_snake();
+
+        track = track -> next;
+    }
+
+}
+
 
 int main(int argc, char *argv[]) {
 
